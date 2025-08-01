@@ -1,28 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>Pub Tracker</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
   <style>
-    /* quick styling so it doesn’t look 1995 */
-    body { font-family: system-ui, sans-serif; max-width: 600px; margin: 3rem auto; }
-    h1  { text-align: center; }
-    input, button { font-size: 1rem; margin-top: .5rem; }
+    body { font-family: sans-serif; margin: 1rem; }
+    #map {
+      width: 100%;
+      height: 400px;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+    }
+    #dropZone {
+      border: 2px dashed #999;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+    #dropZone.hover {
+      border-color: #3498db;
+      background: #f0f8ff;
+    }
+    button { padding: 0.5rem 1rem; font-size: 1rem; }
+    pre    { background: #f9f9f9; padding: 1rem; white-space: pre-wrap; }
   </style>
 </head>
 <body>
-  <h1>How many London pubs have I been to?</h1>
+  <h1>Pub Tracker</h1>
 
-  <!-- choose your Google Timeline file -->
-  <input type="file" id="timelineFile" accept=".json" />
+  <!-- map will render here -->
+  <div id="map"></div>
 
-  <!-- click to run the calculation -->
+  <!-- file picker -->
+  <div id="dropZone">Click or drag &amp; drop your Timeline JSON</div>
+  <input type="file" id="timelineFile" accept=".json" style="display:none">
+
   <button id="goBtn">Count!</button>
 
-  <!-- result will appear here -->
-  <p id="result"></p>
+  <pre id="result"></pre>
 
-  <!-- JavaScript will live in a separate file next -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="pubtracker.js"></script>
 </body>
 </html>
