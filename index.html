@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Pub Tracker</title>
+  <!-- Leaflet CSS -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet/dist/leaflet.css"
@@ -15,36 +16,54 @@
       margin-bottom: 1rem;
       border: 1px solid #ccc;
     }
-    #dropZone {
-      border: 2px dashed #999;
-      padding: 1rem;
-      text-align: center;
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      margin-right: 0.5rem;
       cursor: pointer;
-      margin-bottom: 1rem;
     }
-    #dropZone.hover {
-      border-color: #3498db;
-      background: #f0f8ff;
+    pre {
+      background: #f9f9f9;
+      padding: 1rem;
+      white-space: pre-wrap;
+      margin-top: 1rem;
     }
-    button { padding: 0.5rem 1rem; font-size: 1rem; }
-    pre    { background: #f9f9f9; padding: 1rem; white-space: pre-wrap; }
   </style>
 </head>
 <body>
   <h1>Pub Tracker</h1>
 
-  <!-- map will render here -->
+  <!-- ① Map placeholder -->
   <div id="map"></div>
 
-  <!-- file picker -->
-  <div id="dropZone">Click or drag &amp; drop your Timeline JSON</div>
+  <!-- ② Upload button + hidden file input -->
+  <button id="uploadBtn">Upload Location History JSON</button>
   <input type="file" id="timelineFile" accept=".json" style="display:none">
 
+  <!-- ③ Count button -->
   <button id="goBtn">Count!</button>
 
+  <!-- ④ Results area -->
   <pre id="result"></pre>
 
+  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Your main script -->
   <script src="pubtracker.js"></script>
+  <script>
+    // Wire the upload button to the hidden file input
+    document.getElementById('uploadBtn').addEventListener('click', () => {
+      document.getElementById('timelineFile').click();
+    });
+    // Optionally show the chosen filename on the button
+    document.getElementById('timelineFile').addEventListener('change', (e) => {
+      const btn = document.getElementById('uploadBtn');
+      if (e.target.files.length) {
+        btn.textContent = e.target.files[0].name;
+      } else {
+        btn.textContent = 'Upload Location History JSON';
+      }
+    });
+  </script>
 </body>
 </html>
