@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Pub Tracker</title>
+  <style>
+    /* quick styling so it doesn’t look 1995 */
+    body { font-family: system-ui, sans-serif; max-width: 600px; margin: 3rem auto; }
+    h1  { text-align: center; }
+    input, button { font-size: 1rem; margin-top: .5rem; }
+  </style>
+</head>
+<body>
+  <h1>How many London pubs have I been to?</h1>
+
+  <!-- choose your Google Timeline file -->
+  <input type="file" id="timelineFile" accept=".json" />
+
+  <!-- click to run the calculation -->
+  <button id="goBtn">Count!</button>
+
+  <!-- result will appear here -->
+  <p id="result"></p>
+
+  <!-- JavaScript will live in a separate file next -->
+  <script src="pubtracker.js"></script>
+</body>
+</html>
